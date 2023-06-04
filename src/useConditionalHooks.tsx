@@ -1,5 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
 
+import { isPlainObject } from "@ezez/utils";
+
 interface ConditionalHook<RT = unknown> {
     key: string;
     hook: () => RT;
@@ -12,9 +14,17 @@ const HookHandler: React.FC<{
 }> = (props) => {
     const res = props.hook();
 
+    const deps = Array.isArray(res)
+        ? res
+        : (
+            isPlainObject(res)
+                ? Object.values(res as Record<string, unknown>)
+                : [res]
+        );
+
     useEffect(() => {
         props.onChange(props.fnKey, res);
-    }, Array.isArray(res) ? res : [res]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, deps); // eslint-disable-line react-hooks/exhaustive-deps
 
     return null;
 };

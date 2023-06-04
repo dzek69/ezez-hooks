@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [0.0.3] - 2023-06-05
+### Changed
+- improved support for hooks returning objects
+
 ## [0.0.2] - 2023-06-04
 ### Fixed
 - broken import
