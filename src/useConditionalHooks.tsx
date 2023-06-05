@@ -5,22 +5,27 @@ import { isPlainObject } from "@ezez/utils";
 interface ConditionalHook<RT = unknown> {
     key: string;
     hook: () => RT;
+    changeDetector?: (returnValue: RT) => unknown[];
 }
 
 const HookHandler: React.FC<{
     hook: () => unknown;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    changeDetector?: undefined | ((returnValue: any) => unknown[]);
     onChange: (key: string, newValue: unknown) => void;
     fnKey: string;
 }> = (props) => {
     const res = props.hook();
 
-    const deps = Array.isArray(res)
-        ? res
-        : (
-            isPlainObject(res)
-                ? Object.values(res as Record<string, unknown>)
-                : [res]
-        );
+    const deps = props.changeDetector
+        ? props.changeDetector(res)
+        : Array.isArray(res)
+            ? res
+            : (
+                isPlainObject(res)
+                    ? Object.values(res as Record<string, unknown>)
+                    : [res]
+            );
 
     useEffect(() => {
         props.onChange(props.fnKey, res);
@@ -31,7 +36,7 @@ const HookHandler: React.FC<{
 
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
 const useConditionalHooks = <CH extends ConditionalHook<RT>, RT>(fns: readonly CH[]): [
-    ReturnType<CH["hook"]>[],
+    (ReturnType<CH["hook"]> | undefined)[],
     React.ReactNode,
 ] => {
     const [_, set_] = useState(0);
@@ -59,6 +64,7 @@ const useConditionalHooks = <CH extends ConditionalHook<RT>, RT>(fns: readonly C
                     key={fn.key}
                     hook={fn.hook}
                     fnKey={fn.key}
+                    changeDetector={fn.changeDetector}
                     onChange={handleChange}
                 />
             ))}
