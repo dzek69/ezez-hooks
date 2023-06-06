@@ -7,7 +7,7 @@ import type { AppProps } from "next/app";
 const MyApp = ({ Component, pageProps }: AppProps) => (
     <>
         <Head>
-            <title>React ts-library-template demo</title>
+            <title>@ezez/utils</title>
         </Head>
         <Component {...pageProps} />
     </>

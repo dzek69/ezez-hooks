@@ -6,13 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
-## [0.0.3+]
+## [0.1.0] - 2023-06-06
+### Breaking
+- useConditionalHooks now accepts object of hooks instead of array
+- useConditionalHooks now returns object of results instead of array
+### Changed
+- useConditionalHooks now accepts changeDetector which helps with performance and optionally prevents infinite loops
+- useConditionalHooks now exposes createConditionalHook helper for nicer code and better types
 ### Added
 - useBusy hook
 ### Fixed
-- return type for useConditionalHooks
-### Changed
-- useConditionalHooks now accepts changeDetector
+- useConditionalHooks now correctly adds `null` to possible return values
 
 ## [0.0.3] - 2023-06-05
 ### Changed

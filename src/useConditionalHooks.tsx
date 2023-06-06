@@ -1,16 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
 
-import { isPlainObject } from "@ezez/utils";
+import { isPlainObject, mapValues } from "@ezez/utils";
 
-interface ConditionalHook<RT = unknown> {
-    key: string;
-    hook: () => RT;
-    changeDetector?: (returnValue: RT) => unknown[];
+interface ConditionalHook<T extends (...args: any[]) => any> {
+    hook: T;
+    changeDetector?: undefined | ((returnValue: ReturnType<T>) => any[]);
 }
+
+const createConditionalHook = <T extends (...args: any[]) => any>(
+    hook: T | null,
+    changeDetector?: (value: ReturnType<T>) => any[],
+): ConditionalHook<T> | null => {
+    if (!hook) {
+        return null;
+    }
+    return {
+        hook, changeDetector,
+    };
+};
 
 const HookHandler: React.FC<{
     hook: () => unknown;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     changeDetector?: undefined | ((returnValue: any) => unknown[]);
     onChange: (key: string, newValue: unknown) => void;
     fnKey: string;
@@ -34,9 +46,14 @@ const HookHandler: React.FC<{
     return null;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
-const useConditionalHooks = <CH extends ConditionalHook<RT>, RT>(fns: readonly CH[]): [
-    (ReturnType<CH["hook"]> | undefined)[],
+const useConditionalHooks = <
+    RT extends (...args: any[]) => any,
+    LI extends { [key: string]: ConditionalHook<RT> | null | undefined },
+>(fns: LI): [
+    {
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        [K in keyof LI]: LI[K] extends ConditionalHook<infer RT> | null | undefined ? (ReturnType<RT> | null) : never;
+    },
     React.ReactNode,
 ] => {
     const [_, set_] = useState(0);
@@ -47,23 +64,24 @@ const useConditionalHooks = <CH extends ConditionalHook<RT>, RT>(fns: readonly C
         set_((x) => x + 1);
     }, []);
 
+    // clear cache data for removed hooks
     for (const [key] of data.current) {
-        if (!fns.some((fn) => fn.key === key)) {
+        if (!fns.hasOwnProperty(key)) {
             data.current.delete(key);
         }
     }
 
+    const hooks = Object.entries(fns).filter(([key, fn]) => Boolean(fn)) as [string, ConditionalHook<RT>][];
+
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return [
-        fns.map((fn) => {
-            return data.current.get(fn.key);
-        }) as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+        mapValues(fns, (fn, key) => (fn ? data.current.get(String(key)) : null)) as any,
         <Fragment key={"."}>
-            {fns.map((fn) => (
+            {hooks.map(([key, fn]) => (
                 <HookHandler
-                    key={fn.key}
+                    key={key}
                     hook={fn.hook}
-                    fnKey={fn.key}
+                    fnKey={key}
                     changeDetector={fn.changeDetector}
                     onChange={handleChange}
                 />
@@ -74,5 +92,6 @@ const useConditionalHooks = <CH extends ConditionalHook<RT>, RT>(fns: readonly C
 
 export {
     useConditionalHooks,
+    createConditionalHook,
 };
 
