@@ -6,6 +6,9 @@ const Index: React.FC = (props) => {
     return (
         <ul>
             <li>
+                <Link href={"/useBusy"}>useBusy</Link>
+            </li>
+            <li>
                 useConditionalHook
                 <ul>
                     <li>
@@ -14,7 +17,7 @@ const Index: React.FC = (props) => {
                 </ul>
             </li>
             <li>
-                <Link href={"/useBusy"}>useBusy</Link>
+                <Link href={"/useToday"}>useToday</Link>
             </li>
         </ul>
     );

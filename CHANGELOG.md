@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 (nothing yet)
 
 ## [0.1.0+]
+### Added
+- `useToday` hook
 ### Changed
 - `useConditionalHooks` is now documented
 
