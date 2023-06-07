@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [0.1.0+]
+### Changed
+- `useConditionalHooks` is now documented
+
 ## [0.1.0] - 2023-06-06
 ### Breaking
 - useConditionalHooks now accepts object of hooks instead of array
