@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
-## [0.1.0+]
+## [1.0.0] - 2023-06-08
+### Added
+- `useInputDevice` hook
+- `useUpdateEvery` hook
+
+## [0.2.0] - 2023-06-07
 ### Added
 - `useToday` hook
 ### Changed

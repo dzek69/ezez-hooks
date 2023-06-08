@@ -17,4 +17,7 @@
 /.next
 /next-env.d.ts
 /esm/pages
-/esm/demo
+/esm/demos
+/dist/pages
+/dist/demos
+/typedoc.cjs

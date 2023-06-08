@@ -4,12 +4,16 @@ import Head from "next/head";
 
 import type { AppProps } from "next/app";
 
+import { InputDeviceProvider } from "../useInputDevice.js";
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
     <>
         <Head>
             <title>@ezez/utils</title>
         </Head>
-        <Component {...pageProps} />
+        <InputDeviceProvider>
+            <Component {...pageProps} />
+        </InputDeviceProvider>
     </>
 );
 

@@ -9,7 +9,8 @@
         "plugin:react-hooks/recommended"
     ],
     "env": {
-        "node": true
+        "node": true,
+        "browser": true
     },
     "parserOptions": {
         "sourceType": "module",

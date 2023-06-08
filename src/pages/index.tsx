@@ -17,7 +17,13 @@ const Index: React.FC = (props) => {
                 </ul>
             </li>
             <li>
+                <Link href={"/useInputDevice"}>useInputDevice</Link>
+            </li>
+            <li>
                 <Link href={"/useToday"}>useToday</Link>
+            </li>
+            <li>
+                <Link href={"/useUpdateEvery"}>useUpdateEvery</Link>
             </li>
         </ul>
     );

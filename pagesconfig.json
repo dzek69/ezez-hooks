@@ -1,9 +1,4 @@
 {
-    "pages": [
-        {
-            "title": "Test",
-            "source": "./tutorials/Test.md"
-        }
-    ],
+    "pages": [],
     "source": "tutorials"
 }
