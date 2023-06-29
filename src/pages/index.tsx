@@ -17,7 +17,16 @@ const Index: React.FC = (props) => {
                 </ul>
             </li>
             <li>
+                <Link href={"/useForceUpdate"}>useForceUpdate</Link>
+            </li>
+            <li>
+                <Link href={"/useGeolocation"}>useGeolocation</Link>
+            </li>
+            <li>
                 <Link href={"/useInputDevice"}>useInputDevice</Link>
+            </li>
+            <li>
+                <Link href={"/useSimpleGeolocation"}>useSimpleGeolocation</Link>
             </li>
             <li>
                 <Link href={"/useToday"}>useToday</Link>

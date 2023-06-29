@@ -12,8 +12,8 @@ const startOfDay = (date: number | Date) => {
 };
 
 /**
- * A hook that returns the current date at midnight. It will update the date at midnight. You can change the check
- * interval by passing a number of milliseconds to the hook. By default it will check every 5 seconds.
+ * A hook that returns the current date at midnight (for current timezone). It will update the date at midnight. You can
+ * change the check interval by passing a number of milliseconds to the hook. By default, it will check every 5 seconds.
  *
  * @example
  * ```tsx
@@ -26,7 +26,7 @@ const startOfDay = (date: number | Date) => {
  * @param checkInterval - the number of milliseconds to wait between checks
  * @returns The current date at midnight, as a Date object.
  */
-const useToday = (checkInterval = DEFAULT_INTERVAL) => {
+const useToday = (checkInterval = DEFAULT_INTERVAL): Date => {
     const [today, setToday] = useState(startOfDay(new Date()));
 
     useEffect(() => {

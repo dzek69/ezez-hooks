@@ -15,7 +15,7 @@ const DEFAULT_UPDATE_INTERVAL = 1000;
  *
  * @param everyMs - interval between updates, set it to 0 to stop the forced updates
  */
-const useUpdateEvery = (everyMs: number = DEFAULT_UPDATE_INTERVAL) => {
+const useUpdateEvery = (everyMs: number = DEFAULT_UPDATE_INTERVAL): number => {
     const [s, setState] = useState(Date.now());
 
     useEffect(() => {

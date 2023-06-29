@@ -16,7 +16,7 @@ import { useCallback, useState } from "react";
  * @returns A tuple with the number of currently running actions/promises and a function to add a promise to the
  * counter.
  */
-const useBusy = <T>() => {
+const useBusy = <T>(): readonly [number, ((promise: Promise<T>) => Promise<T>)] => {
     const [number, setNumber] = useState(0);
 
     const cb = useCallback((promise: Promise<T>) => {
@@ -27,7 +27,7 @@ const useBusy = <T>() => {
         return promise;
     }, [setNumber]);
 
-    return [number, cb] as const;
+    return [number, cb];
 };
 
 export {

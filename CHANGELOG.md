@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [1.1.0] - 2023-06-29
+### Added
+- `useGeolocation` hook
+- `useSimpleGeolocation` hook
+- `useForceUpdate` hook
+### Changed
+- set an explicit return type wherever possible
+- slight docs updates/rewording
+### Dev
+- dev deps update
+
 ## [1.0.0] - 2023-06-08
 ### Added
 - `useInputDevice` hook
