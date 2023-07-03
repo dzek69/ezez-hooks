@@ -35,7 +35,7 @@ const useGeolocation = (enable = true, options?: PositionOptions) => {
         return () => {
             navigator.geolocation.clearWatch(id);
         };
-    }, [enable, Object.values(options ?? {})]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [enable, ...(Object.values(options ?? {}) as unknown[])]); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (!pos.current) {
         return null;
