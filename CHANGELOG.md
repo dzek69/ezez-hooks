@@ -1,14 +1,22 @@
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+The format is based on [EZEZ Changelog](https://ezez.dev/guidelines/changelog)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [UNRELEASED]
 (nothing yet)
 
-## [1.1.3+]
+## [1.2.0] - 2023-08-26
+### Added
+- `useCrossTabs` hook
+- `useCrossTabsMessage` hook
+- `useDetectMultiTabs` hook
+- `useEffect2` hook
+- `useIsFirstRender` hook
 ### Dev
 - upgraded ts-library-template (yarn -> pnpm, deps, support for paths, etc.)
+- fixed demos not running
+- fixed react and react-dom being in dependencies
 
 ## [1.1.3] - 2023-07-03
 ### Fixed
