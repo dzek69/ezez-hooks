@@ -63,8 +63,7 @@
         "react": {
             "createClass": "createReactClass",
             "pragma": "React",
-            "version": "detect",
-            "flowVersion": "detect"
+            "version": "detect"
         },
         "propWrapperFunctions": []
     }

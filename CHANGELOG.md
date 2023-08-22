@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [1.1.3+]
+### Dev
+- upgraded ts-library-template (yarn -> pnpm, deps, support for paths, etc.)
+
 ## [1.1.3] - 2023-07-03
 ### Fixed
 - `useGeolocation` causing blinking GPS icon on mobile
