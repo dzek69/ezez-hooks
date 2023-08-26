@@ -14,7 +14,7 @@
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx,.mjs",
     "lint:fix": "pnpm lint --fix",
     "prepack": "pnpm compile",
-    "prepublishOnly": "pnpm audit && pnpm lint && pnpm test && pnpm docs",
+    "prepublishOnly": "pnpm audit && pnpm lint && pnpm test && pnpm run docs",
     "prepare": "husky install",
     "start:dev": "next dev",
     "start:dev:compatibility": "TS_NODE_FILES=true pnpm start:dev",
