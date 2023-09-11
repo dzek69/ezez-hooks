@@ -50,7 +50,7 @@ const removeInstance = (nname: string) => {
  */
 const useCrossTabs = (name: string) => { // eslint-disable-line @typescript-eslint/no-shadow
     const bcRef = useRef<BroadcastChannel>();
-    if (bcRef.current === undefined) {
+    if (bcRef.current === undefined && typeof BroadcastChannel !== "undefined") {
         bcRef.current = createInstance(name);
     }
     const update = useForceUpdate();

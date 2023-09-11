@@ -11,6 +11,9 @@ const UseCrossTabs: React.FC<Props> = () => {
     const [messages, setMessages] = React.useState<string[]>([]);
 
     const handleSubmit: React.FormEventHandler = useCallback((e) => {
+        if (!ct) {
+            return;
+        }
         e.preventDefault();
         ct.postMessage(text);
         setText("");
@@ -21,6 +24,10 @@ const UseCrossTabs: React.FC<Props> = () => {
     }, []);
 
     useEffect(() => {
+        if (!ct) {
+            return;
+        }
+
         const listener = (e: MessageEvent) => {
             setMessages((prev) => [...prev, JSON.stringify(e.data)]);
         };

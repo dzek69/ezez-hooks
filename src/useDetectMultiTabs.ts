@@ -33,6 +33,10 @@ const useDetectMultiTabs = (name = "@ezez/hooks/useDetectMultiTabs") => { // esl
     }, []);
 
     useEffect(() => {
+        if (!bc) {
+            return;
+        }
+
         const interval = new Interval(() => {
             bc.postMessage("ping");
         }, SEND_PING_EVERY, true, true);
@@ -43,6 +47,10 @@ const useDetectMultiTabs = (name = "@ezez/hooks/useDetectMultiTabs") => { // esl
     }, [bc]);
 
     useEffect(() => {
+        if (!bc) {
+            return;
+        }
+
         const callback = (e: MessageEvent) => {
             if (e.data === "ping") {
                 setIsMultiTab(true);

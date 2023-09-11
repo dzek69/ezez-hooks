@@ -40,6 +40,10 @@ const UseCrossTabsMessage: React.FC<Props> = () => {
     }, [callback])); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
+        if (!ct) {
+            return;
+        }
+
         const interval = setInterval(() => {
             const msg = pickRandomElement();
             ct.postMessage(msg);

@@ -16,13 +16,13 @@ const useCrossTabsMessage = <T = any>(name: string, callback: (data: MessageEven
     // @TODO this can be replaced with useEffect2
     useEffect(() => {
         if (prevBc.current !== bc) {
-            prevBc.current.removeEventListener("message", prevCallback.current);
-            bc.addEventListener("message", callback);
+            prevBc.current?.removeEventListener("message", prevCallback.current);
+            bc?.addEventListener("message", callback);
             return;
         }
 
-        bc.removeEventListener("message", prevCallback.current);
-        bc.addEventListener("message", callback);
+        bc?.removeEventListener("message", prevCallback.current);
+        bc?.addEventListener("message", callback);
     }, [bc, callback]);
 
     // keep this hook last

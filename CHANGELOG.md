@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [1.2.2] - 2023-09-11
+### Fixed
+- SSR when using `useCrossTabs`
+
 ## [1.2.1] - 2023-08-26
 ### Fixed
 - missing exports of hooks from 1.2.0
