@@ -32,7 +32,15 @@ const Index: React.FC = () => {
                     <Link href={"/useDetectMultiTabs"}>useDetectMultiTabs</Link>
                 </li>
                 <li>
-                    <Link href={"/useEffect2"}>useEffect2</Link>
+                    useEffect2
+                    <ul>
+                        <li>
+                            <Link href={"/useEffect2"}>Basic demo</Link>
+                        </li>
+                        <li>
+                            <Link href={"/useEffect2/deps"}>useEffect2 dynamic deps array test</Link>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <Link href={"/useForceUpdate"}>useForceUpdate</Link>

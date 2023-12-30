@@ -10,7 +10,8 @@ const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // esli
 
 /**
  * Like `useEffect` but callback will be fired with previous dependencies. On initial render previous dependencies will
- * be undefined.
+ * be undefined. You can pass a dynamic list of dependencies, and the effect will be called whenever there is a change.
+ * Standard useEffect does not call the callback whenever deps array size changes.
  *
  * TypeScript tip: use `useEffect2(prev => {}, [dep1, dep2] as const)` to get correct type inference.
  *
@@ -53,7 +54,7 @@ const useEffect2 = <P, T extends (Readonly<P[]>)>(
 
         prevDependencies.current = dependencies;
         return callback(p);
-    }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
+    }); // no deps array - we compare deps manually anyway
 };
 
 export {

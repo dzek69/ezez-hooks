@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 import { isPlainObject, mapValues } from "@ezez/utils";
+
+import { useEffect2 } from "./useEffect2.js";
 
 /**
  * Interface representing a conditional hook that can be passed to `useConditionalHooks`.
@@ -66,9 +68,9 @@ const HookHandler: React.FC<{
                     : [res]
             );
 
-    useEffect(() => {
+    useEffect2(() => {
         props.onChange(props.fnKey, res);
-    }, deps); // eslint-disable-line react-hooks/exhaustive-deps
+    }, deps);
 
     return null;
 };
@@ -220,7 +222,10 @@ const useConditionalHooks = <
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return [
         mapValues(fns, (fn, key) => (fn ? data.current.get(String(key)) : null)) as any,
-        <Fragment key={"."}>
+
+        // This fragment does not need a key, this returned array is not meant to be rendered as a whole
+        // eslint-disable-next-line react/jsx-key
+        <>
             {hooks.map(([key, fn]) => (
                 <HookHandler
                     key={key}
@@ -230,7 +235,7 @@ const useConditionalHooks = <
                     onChange={handleChange}
                 />
             ))}
-        </Fragment>,
+        </>,
     ];
 };
 

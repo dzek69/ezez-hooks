@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [2.0.0] - 2023-12-30
+### Breaking
+- `useEffect2` will trigger the callback whenever the dependency array size change, this is different from `useEffect`,
+but more intuitive
+### Fixed
+- `useConditionalHooks` will correctly update the result when called hook returns an array
+
 ## [1.2.2] - 2023-09-11
 ### Fixed
 - SSR when using `useCrossTabs`
