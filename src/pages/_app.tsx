@@ -9,7 +9,7 @@ import { InputDeviceProvider } from "../useInputDevice.js";
 const MyApp = ({ Component, pageProps }: AppProps) => (
     <>
         <Head>
-            <title>@ezez/utils</title>
+            <title>@ezez/hooks</title>
         </Head>
         <InputDeviceProvider>
             <Component {...pageProps} />

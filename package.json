@@ -1,6 +1,6 @@
 {
   "name": "@ezez/hooks",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "repository": "git@github.com:dzek69/ezez-hooks.git",
   "author": "Jacek Nowacki",
   "license": "MIT",
@@ -33,6 +33,7 @@
   "types": "./esm/index.d.ts",
   "module": "./esm/index.js",
   "dependencies": {
+    "@ezez/utils": "^1.9.0",
     "oop-timers": "^5.0.0"
   },
   "devDependencies": {
@@ -44,7 +45,6 @@
     "@dzek69/eslint-config-import-typescript": "^1.0.1",
     "@dzek69/eslint-config-react": "^1.2.2",
     "@dzek69/eslint-config-typescript": "^1.1.1",
-    "@ezez/utils": "^1.9.0",
     "@knodes/typedoc-plugin-pages": "^0.23.4",
     "@types/jest": "^29.5.2",
     "@types/react": "^18.2.8",

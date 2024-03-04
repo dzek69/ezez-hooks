@@ -19,6 +19,7 @@ const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // esli
  * @param dependencies - array of dependencies
  *
  * @example
+ * ```typescript
  * const { isAdmin, name } = useUserData(); // isAdmin is boolean, name is string
  *
  * useEffect2((prev) => {
@@ -40,6 +41,7 @@ const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // esli
  *     }
  *     alert(message);
  * }, [isAdmin, name] as const);
+ * ```
  */
 const useEffect2 = <P, T extends (Readonly<P[]>)>(
     // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -59,4 +61,5 @@ const useEffect2 = <P, T extends (Readonly<P[]>)>(
 
 export {
     useEffect2,
+    useEffect2 as useDepEffect,
 };

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 (nothing yet)
 
+## [2.1.0] - 2024-03-03
+### Added
+- `useDepEffect` alias for `useEffect2`
+### Fixed
+- missing dependency: `@ezez/utils`
+
 ## [2.0.0] - 2023-12-30
 ### Breaking
 - `useEffect2` will trigger the callback whenever the dependency array size change, this is different from `useEffect`,
