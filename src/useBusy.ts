@@ -23,7 +23,7 @@ const useBusy = <T>(): readonly [number, ((promise: Promise<T>) => Promise<T>)] 
         setNumber(n => n + 1);
         promise.finally(() => {
             setNumber(n => n - 1);
-        });
+        }).catch(() => undefined);
         return promise;
     }, [setNumber]);
 
