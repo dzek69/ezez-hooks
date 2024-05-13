@@ -54,6 +54,14 @@
             "rules": {
                 "@typescript-eslint/require-await": "off"
             }
+        },
+        {
+            "files": [
+                "src/demos/**/*"
+            ],
+            "rules": {
+                "react/jsx-no-bind": "off"
+            }
         }
     ],
     "rules": {

@@ -55,6 +55,9 @@ const Index: React.FC = () => {
                     <Link href={"/useIsFirstRender"}>useIsFirstRender</Link>
                 </li>
                 <li>
+                    <Link href={"/useProxyRef"}>useProxyRef</Link>
+                </li>
+                <li>
                     <Link href={"/useSimpleGeolocation"}>useSimpleGeolocation</Link>
                 </li>
                 <li>
