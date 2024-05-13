@@ -1,6 +1,6 @@
 {
   "name": "@ezez/hooks",
-  "version": "2.1.1+",
+  "version": "2.2.0",
   "repository": "git@github.com:dzek69/ezez-hooks.git",
   "author": "Jacek Nowacki",
   "license": "MIT",
@@ -61,7 +61,7 @@
     "husky": "^8.0.3",
     "jest": "^29.6.1",
     "must": "^0.13.4",
-    "next": "^14.0.4",
+    "next": "^14.2.3",
     "nodemon": "^3.0.1",
     "prettier": "^2.8.8",
     "react": "^18.2.0",

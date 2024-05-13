@@ -1,59 +1,53 @@
-import type { MutableRefObject } from "react";
 import { useState, useRef } from "react";
+
+type ProxyRef<T> = ((newValue: T) => void) & { current: T };
 
 /**
  * This hook allows you to create a ref that is proxied, so you have control over what is done with it later.
- * @param defaultValue - the usual ref value
- * @param handler - proxy handler that will wrap your value
+ * If you want to wrap an existing ref, use useForwardedProxyRef instead.
+ * @param initialValue - your usual ref value
+ * @param handler - handler of the Proxy that will wrap your value
  */
 const useProxyRef = <T extends object | null | undefined>(
-    defaultValue: T, handler: ProxyHandler<Exclude<T, null | undefined>>,
-): MutableRefObject<T> => {
-    /**
-     * Holds the raw, unproxied value
-     */
-    const rawStorage = useRef(defaultValue);
-    /**
-     * Holds the value we proxy and then expose
-     */
-    const storage = useRef(defaultValue);
-    /**
-     * Stores current proxy handler
-     */
-    const currentHandler = useRef(handler);
-    currentHandler.current = handler;
+    initialValue: T, handler: ProxyHandler<Exclude<T, null | undefined>>,
+): ProxyRef<T> => {
+    const updateHandlerRef = useRef<(newHandler: typeof handler) => void>(() => {
+        throw new Error("Impossible");
+    });
 
-    /**
-     * This is ref-like value we will expose
-     */
-    const [exposed] = useState({});
+    const [ref] = useState(() => {
+        let value: T = initialValue, // storage for raw value that was given (not proxied)
+            proxied: T = initialValue,
+            currentHandler = handler;
 
-    /**
-     * Setter of exposed ref
-     */
-    const setter = (value: T) => {
-        rawStorage.current = value;
-        storage.current = rawStorage.current == null
-            ? rawStorage.current
-            : new Proxy(rawStorage.current, currentHandler.current);
-    };
+        const setter = (newValue: T) => {
+            value = newValue;
+            proxied = value == null
+                ? value
+                : new Proxy(value, currentHandler);
+        };
 
-    /**
-     * Prepare `current` property on exposed ref
-     */
-    if (!("current" in exposed)) {
-        Object.defineProperty(exposed, "current", {
-            get: () => storage.current,
+        // @ts-expect-error No way to handle it with TS
+        const myRef: ProxyRef<T> = setter;
+        Object.defineProperty(myRef, "current", {
+            get: () => proxied,
             set: setter,
+            enumerable: true,
         });
-    }
 
-    /**
-     * Make sure we react to handler changes
-     */
-    setter(rawStorage.current);
+        updateHandlerRef.current = (newHandler) => {
+            currentHandler = newHandler;
 
-    return exposed as MutableRefObject<T>;
+            setter(value);
+        };
+
+        setter(value);
+        return myRef;
+    });
+
+    updateHandlerRef.current(handler);
+
+    return ref;
 };
 
 export {

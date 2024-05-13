@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 
-import { useProxyRef } from "../../useProxyRef";
+import { useForwardedProxyRef } from "../../useForwardedProxyRef";
 
 interface Props {}
 
@@ -42,14 +42,29 @@ const noChickenProxy: ProxyHandler<HTMLInputElement | HTMLTextAreaElement> = {
 // @ts-expect-error Just a debug helper
 noChickenProxy.name = "No chicken";
 
-const UseProxyRef: React.FC<Props> = () => {
+const Input = forwardRef<
+HTMLInputElement | null, { proxy: ProxyHandler<HTMLInputElement | HTMLTextAreaElement> }
+>((props, ref) => {
+    const theRef = useForwardedProxyRef(ref, props.proxy);
+
+    // const standardRef = useRef<Date | number | null>(5);
+    // const wrapped = useForwardedProxyRef(standardRef, {});
+    // console.info("Standard ref", { wrapped, standardRef });
+
+    return (
+        <input ref={theRef} />
+    );
+});
+
+// eslint-disable-next-line react/no-multi-comp
+const UseForwardedProxyRef: React.FC<Props> = () => {
     const [number, setNumber] = useState(0); // just to trigger re-renders
 
     const [currentProxy, setCurrentProxy] = useState<
     ProxyHandler<HTMLInputElement | HTMLTextAreaElement>
     >(noDucksProxy);
 
-    const ref = useProxyRef<HTMLInputElement | null>(null, currentProxy);
+    const ref = useRef<HTMLInputElement | null>(null);
 
     const setRefValue = (value: string) => {
         if (!ref.current) {
@@ -65,8 +80,8 @@ const UseProxyRef: React.FC<Props> = () => {
             <button onClick={() => { setCurrentProxy(noDucksProxy); }}>set proxy to ducks</button>
             <button onClick={() => { setCurrentProxy(noChickenProxy); }}>set proxy to chicken</button>
             <hr />
-            Input ref #{number}:
-            <input key={number} ref={ref} />
+            Input ref #{number}: <hr />
+            <Input key={number} ref={ref} proxy={currentProxy} />
             <button onClick={() => { setNumber(p => p + 1); }}>Change ref</button>
             <hr />
             Value manipulation:
@@ -77,4 +92,4 @@ const UseProxyRef: React.FC<Props> = () => {
     );
 };
 
-export { UseProxyRef };
+export { UseForwardedProxyRef };

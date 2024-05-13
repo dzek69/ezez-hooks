@@ -46,6 +46,9 @@ const Index: React.FC = () => {
                     <Link href={"/useForceUpdate"}>useForceUpdate</Link>
                 </li>
                 <li>
+                    <Link href={"/useForwardedProxyRef"}>useForwardedProxyRef</Link>
+                </li>
+                <li>
                     <Link href={"/useGeolocation"}>useGeolocation</Link>
                 </li>
                 <li>
