@@ -18,6 +18,7 @@ If a hook is there, it's either unique, rare, super optimized or just needed for
 - 🌐 `useSimpleGeolocation` - keep track of user's geolocation (simplified)
 - ☝️ `useInputDevice` - keep track of a currently active input device
 - 🥇 `useIsFirstRender` - keep track of first render
+- 💾 `useMemoizedFn` - improve performance by memoizing functions
 - 🎭 `useProxyRef` - wraps your ref with a Proxy for full control
 - 🎭 `useForwardedProxyRef` - wraps forwarded ref with a Proxy for full control
 - 📅 `useToday` - keep track of day changes

@@ -2,9 +2,7 @@ import React from "react";
 
 import { useGeolocation } from "../../useGeolocation.js";
 
-interface Props {}
-
-const UseGeolocationMain: React.FC<Props> = (props) => {
+const UseGeolocationMain: React.FC = () => {
     const data = useGeolocation();
 
     return (

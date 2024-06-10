@@ -10,7 +10,6 @@
 /nodemon.json
 /.editorconfig
 /tsconfig.*
-/.eslintrc.json
 /pagesconfig.json
 
 /.next
@@ -20,3 +19,9 @@
 /dist/pages
 /dist/demos
 /typedoc.cjs
+
+/eslint.config.mjs
+/typedoc.mjs
+/.prettierignore
+/.prettierrc.json
+/.husky

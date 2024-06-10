@@ -2,9 +2,7 @@ import React from "react";
 
 import { useDetectMultiTabs } from "../../useDetectMultiTabs";
 
-interface Props {}
-
-const UseDetectMultiTabs: React.FC<Props> = () => {
+const UseDetectMultiTabs: React.FC = () => {
     const isMulti = useDetectMultiTabs();
 
     return (

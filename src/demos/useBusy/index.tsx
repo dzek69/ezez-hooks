@@ -4,11 +4,9 @@ import { rethrow, wait } from "@ezez/utils";
 
 import { useBusy } from "../../useBusy.js";
 
-interface Props {}
-
 const FAKE_WAIT_TIME = 2000;
 
-const UseBusyMain: React.FC<Props> = (props) => {
+const UseBusyMain: React.FC = () => {
     const [busy, addBusy] = useBusy();
 
     const handleAddFakeTask = useCallback(() => {

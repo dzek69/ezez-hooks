@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 
-type ProxyRef<T> = ((newValue: T) => void) & { current: T };
+import type { ProxyRef } from "./publicTypes";
 
 /**
  * This hook allows you to create a ref that is proxied, so you have control over what is done with it later.
- * If you want to wrap an existing ref, use useForwardedProxyRef instead.
+ * If you want to wrap an existing ref, use {@link useForwardedProxyRef} instead.
  * @param initialValue - your usual ref value
  * @param handler - handler of the Proxy that will wrap your value
  */

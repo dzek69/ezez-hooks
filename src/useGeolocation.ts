@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useForceUpdate } from "./useForceUpdate.js";
 
 // geolocation props are not enumerable, so we need to get them manually
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 const props = (
     typeof GeolocationCoordinates === "undefined"
         ? []
@@ -24,6 +25,10 @@ const useGeolocation = (enable = true, options?: PositionOptions) => {
     const pos = useRef<GeolocationPosition>();
 
     useEffect(() => {
+        if (!enable) {
+            return;
+        }
+
         const id = navigator.geolocation.watchPosition((loc) => {
             const somethingChanged = props.some((prop) => loc.coords[prop] !== pos.current?.coords[prop]);
             if (somethingChanged) {
@@ -35,7 +40,8 @@ const useGeolocation = (enable = true, options?: PositionOptions) => {
         return () => {
             navigator.geolocation.clearWatch(id);
         };
-    }, [enable, ...(Object.values(options ?? {}) as unknown[])]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [enable, options?.enableHighAccuracy, options?.maximumAge, options?.timeout]); // eslint-disable-line react-hooks/exhaustive-deps
+    // ^ update is static, for options it's more performant if we don't care about the object identity
 
     if (!pos.current) {
         return null;

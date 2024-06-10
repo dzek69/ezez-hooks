@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [EZEZ Changelog](https://ezez.dev/guidelines/changelog)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-01-11
+### Added
+- `useMemoizedFn` hook
+- `proxyHandlerTransparentGet` helper
+- `ProxyRef`, `InputDeviceProviderProps` types export
+### Changed
+- various docs improvements
+### Fixed
+- `useGeolocation` `enabled` parameter not honored (always enabled)
+
 ## [2.2.0] - 2024-05-13
 ### Added
 - `useProxyRef` hook

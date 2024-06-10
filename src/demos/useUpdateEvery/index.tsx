@@ -2,9 +2,7 @@ import React from "react";
 
 import { useUpdateEvery } from "../../useUpdateEvery.js";
 
-interface Props {}
-
-const UseUpdateEveryMain: React.FC<Props> = (props) => {
+const UseUpdateEveryMain: React.FC = () => {
     useUpdateEvery();
 
     return (

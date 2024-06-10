@@ -16,7 +16,7 @@ const PING_TIMEOUT = 1024;
  *
  * @param name - channel name, optional, by default it's "@ezez/hooks/useDetectMultiTabs"
  */
-const useDetectMultiTabs = (name = "@ezez/hooks/useDetectMultiTabs") => { // eslint-disable-line @typescript-eslint/no-shadow, max-len
+const useDetectMultiTabs = (name = "@ezez/hooks/useDetectMultiTabs") => { // eslint-disable-line @typescript-eslint/no-shadow
     const bc = useCrossTabs(name);
     const [isMultiTab, setIsMultiTab] = useState(false);
 

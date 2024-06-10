@@ -2,8 +2,6 @@ import React from "react";
 
 import { useInputDevice } from "../../useInputDevice.js";
 
-interface Props {}
-
 const big: React.CSSProperties = {
     padding: "1em",
 };
@@ -12,7 +10,7 @@ const handleSave = () => {
     alert("Saved!");
 };
 
-const UseInputDeviceMain: React.FC<Props> = (props) => {
+const UseInputDeviceMain: React.FC = () => {
     const dev = useInputDevice("");
 
     const isTouch = dev !== "mouse";
@@ -27,7 +25,10 @@ const UseInputDeviceMain: React.FC<Props> = (props) => {
                 : "The button has normal size, mouse is precise"}
 
             <br />
-            <button style={isTouch ? big : {}} title={"Save"} onClick={handleSave}>{isTouch && "Save "}💾</button>
+
+            <button style={isTouch ? big : {}} title={"Save"} onClick={handleSave}>
+                {Boolean(isTouch) && "Save "}💾
+            </button>
 
             <br />
             <br />

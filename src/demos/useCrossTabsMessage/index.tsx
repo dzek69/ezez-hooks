@@ -3,8 +3,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useCrossTabs } from "../../useCrossTabs";
 import { useCrossTabsMessage } from "../../useCrossTabsMessage";
 
-interface Props {}
-
 const randomWords = [
     "lorem",
     "ipsum",
@@ -27,7 +25,7 @@ const pickRandomElement = () => {
 
 const RANDOM_MESSAGE_INTERVAL = 1000;
 
-const UseCrossTabsMessage: React.FC<Props> = () => {
+const UseCrossTabsMessage: React.FC = () => {
     const [channel, setChannel] = useState(1);
     const [callback, setCallback] = useState(1);
 
@@ -57,9 +55,7 @@ const UseCrossTabsMessage: React.FC<Props> = () => {
 
     return (
         <div>
-            {/* eslint-disable-next-line react/jsx-no-bind */}
             <button onClick={() => { setCallback(p => p + 1); }}>Increase callback</button>
-            {/* eslint-disable-next-line react/jsx-no-bind */}
             <button onClick={() => { setChannel(p => p + 1); }}>Increase channel</button>
 
             Open this page in multiple tabs.

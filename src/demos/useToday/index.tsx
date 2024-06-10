@@ -2,9 +2,7 @@ import React from "react";
 
 import { useToday } from "../../useToday.js";
 
-interface Props {}
-
-const UseTodayMain: React.FC<Props> = (props) => {
+const UseTodayMain: React.FC = () => {
     const today = useToday();
 
     return (

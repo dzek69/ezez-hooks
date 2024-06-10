@@ -2,10 +2,8 @@ import React, { useCallback, useState } from "react";
 
 import { useEffect2 } from "../../useEffect2";
 
-interface Props {}
-
 // eslint-disable-next-line max-lines-per-function
-const UseEffect2: React.FC<Props> = () => {
+const UseEffect2: React.FC = () => {
     const [value1, setValue1] = useState(1);
     const [value2, setValue2] = useState("lorem");
     const [log, setLog] = useState("");

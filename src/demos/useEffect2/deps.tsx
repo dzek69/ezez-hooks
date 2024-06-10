@@ -3,12 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useEffect2 } from "../../useEffect2";
 import { useForceUpdate } from "../../useForceUpdate";
 
-interface Props {}
-
 const init: never[] = [];
 const then = [1];
 
-const UseEffect2Deps: React.FC<Props> = () => {
+const UseEffect2Deps: React.FC = () => {
     const [useInit, setUseInit] = useState(false);
     const handleUpdate = useForceUpdate();
 

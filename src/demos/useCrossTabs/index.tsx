@@ -2,9 +2,7 @@ import React, { useCallback, useEffect } from "react";
 
 import { useCrossTabs } from "../../useCrossTabs";
 
-interface Props {}
-
-const UseCrossTabs: React.FC<Props> = () => {
+const UseCrossTabs: React.FC = () => {
     const ct = useCrossTabs("ezez");
 
     const [text, setText] = React.useState("");

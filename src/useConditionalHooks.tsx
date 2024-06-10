@@ -64,6 +64,7 @@ const HookHandler: React.FC<{
             ? res
             : (
                 isPlainObject(res)
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                     ? Object.values(res as Record<string, unknown>)
                     : [res]
             );
@@ -217,10 +218,12 @@ const useConditionalHooks = <
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
     const hooks = Object.entries(fns).filter(([key, fn]) => Boolean(fn)) as [string, ConditionalHook<RT>][];
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return [
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         mapValues(fns, (fn, key) => (fn ? data.current.get(String(key)) : null)) as any,
 
         // This fragment does not need a key, this returned array is not meant to be rendered as a whole

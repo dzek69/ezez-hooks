@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import { useProxyRef } from "../../useProxyRef";
 
-interface Props {}
-
 const noDucksProxy: ProxyHandler<HTMLInputElement | HTMLTextAreaElement> = {
     set(input, prop, value) {
         console.info("setting value on ducks proxy", value, input.value, value === input.value);
@@ -42,11 +40,11 @@ const noChickenProxy: ProxyHandler<HTMLInputElement | HTMLTextAreaElement> = {
 // @ts-expect-error Just a debug helper
 noChickenProxy.name = "No chicken";
 
-const UseProxyRef: React.FC<Props> = () => {
+const UseProxyRef: React.FC = () => {
     const [number, setNumber] = useState(0); // just to trigger re-renders
 
     const [currentProxy, setCurrentProxy] = useState<
-    ProxyHandler<HTMLInputElement | HTMLTextAreaElement>
+        ProxyHandler<HTMLInputElement | HTMLTextAreaElement>
     >(noDucksProxy);
 
     const ref = useProxyRef<HTMLInputElement | null>(null, currentProxy);

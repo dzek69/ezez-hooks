@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // eslint-disable-line @typescript-eslint/no-explicit-any, max-len
+const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // eslint-disable-line @typescript-eslint/no-explicit-any
     if (a.length !== b.length) { return false; }
     for (let i = 0; i < a.length; i++) {
         if (!Object.is(a[i], b[i])) { return false; }
@@ -43,7 +43,7 @@ const shallowCompareArrays = <T extends readonly any[]>(a: T, b: T) => { // esli
  * }, [isAdmin, name] as const);
  * ```
  */
-const useEffect2 = <P, T extends (Readonly<P[]>)>(
+const useEffect2 = <P, T extends (readonly P[])>(
     // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     callback: (previousDependencies: T | undefined) => void | (() => void), dependencies: T,
 ) => {

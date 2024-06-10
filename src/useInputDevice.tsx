@@ -20,15 +20,16 @@ interface Props {
 }
 
 const InputDeviceContext = createContext<ContextDevices>("missing-input-device-provider");
+InputDeviceContext.displayName = "InputDeviceContext";
 
 const IGNORE_MOUSE_EVENTS_AFTER_TOUCH_FOR = 350;
 
 /**
  * A Provider component for `useInputDevice` hook. Mount it at the top of your app.
  *
- * @param children - content to wrap with the provider
+ * @param props - provider props, only children are used
  */
-const InputDeviceProvider: React.FC<Props> = ({ children }) => {
+const InputDeviceProvider: React.FC<Props> = (props) => {
     const [device, setDevice] = useState<InputDevices | "">("");
 
     useEffect(() => {
@@ -62,7 +63,7 @@ const InputDeviceProvider: React.FC<Props> = ({ children }) => {
         };
     }, []);
 
-    return <InputDeviceContext.Provider value={device}>{children}</InputDeviceContext.Provider>;
+    return <InputDeviceContext.Provider value={device}>{props.children}</InputDeviceContext.Provider>;
 };
 
 /**
@@ -102,4 +103,5 @@ export {
 export type {
     StateDevices,
     InputDevices,
+    Props as InputDeviceProviderProps,
 };

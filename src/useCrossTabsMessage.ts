@@ -8,7 +8,7 @@ import { useCrossTabs } from "./useCrossTabs";
  * @param name
  * @param callback
  */
-const useCrossTabsMessage = <T = any>(name: string, callback: (data: MessageEvent<T>) => void): void => { // eslint-disable-line @typescript-eslint/no-shadow, @typescript-eslint/no-explicit-any, max-len
+const useCrossTabsMessage = <T = any>(name: string, callback: (data: MessageEvent<T>) => void): void => { // eslint-disable-line @typescript-eslint/no-shadow, @typescript-eslint/no-explicit-any
     const bc = useCrossTabs(name);
     const prevBc = useRef(bc);
     const prevCallback = useRef(callback);

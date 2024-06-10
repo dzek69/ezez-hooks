@@ -2,18 +2,18 @@ import type { ForwardedRef } from "react";
 import { useState, useRef } from "react";
 
 import type { Primitives } from "./types";
-
-type ProxyRef<T> = ((newValue: T) => void) & { current: T };
+import type { ProxyRef } from "./publicTypes";
 
 /**
  * This hook allows you to wrap a forwarded ref with a proxy handler, so you have control over what is done with it
  * later. Unlike useImperativeHandle you can still expose full instance (external instanceof checks will work).
+ * If you are not working with forwarded refs, use {@link useProxyRef} instead.
  * @param forwardedRef - ref that will be wrapped with a proxy
  * @param handler - handler of the Proxy that will wrap your value
  */
 const useForwardedProxyRef = <T, NPT extends Exclude<T, Primitives>, F extends object & NPT>(
     forwardedRef: ForwardedRef<Exclude<T, Primitives>>, handler: ProxyHandler<Exclude<F, null | undefined>>,
-): ProxyRef<NPT> => {
+): ProxyRef<T> => {
     const updateHandlerRef = useRef<(newHandler: typeof handler) => void>(() => {
         throw new Error("Impossible");
     });
@@ -38,7 +38,7 @@ const useForwardedProxyRef = <T, NPT extends Exclude<T, Primitives>, F extends o
         };
 
         // @ts-expect-error No way to handle it with TS
-        const myRef: ProxyRef<NPT> = setter;
+        const myRef: ProxyRef<T> = setter;
         Object.defineProperty(myRef, "current", {
             get: () => proxied,
             set: setter,
@@ -51,7 +51,6 @@ const useForwardedProxyRef = <T, NPT extends Exclude<T, Primitives>, F extends o
             setter(value);
         };
 
-        setter(value);
         return myRef;
     });
 
@@ -63,3 +62,4 @@ const useForwardedProxyRef = <T, NPT extends Exclude<T, Primitives>, F extends o
 export {
     useForwardedProxyRef,
 };
+

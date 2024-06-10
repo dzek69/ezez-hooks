@@ -1,4 +1,9 @@
 {
-    "pages": [],
+    "pages": [
+        {
+            "title": "CHANGELOG",
+            "source": "./CHANGELOG.md"
+        }
+    ],
     "source": "tutorials"
 }
